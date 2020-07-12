@@ -1,4 +1,4 @@
-package com.project.delivery.entity;
+package com.project.delivery.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderInDto {
+public class TakeOrderDto {
 	
-	private String [] origin;
-	private String [] destination;
+	private String status;
 
 }

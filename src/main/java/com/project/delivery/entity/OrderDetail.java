@@ -3,6 +3,7 @@ package com.project.delivery.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,8 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "OrderRoute")
-public class OrderDetailDto {
+@Entity
+@Table(name = "order_detail")
+public class OrderDetail {
 	
 	@Id @GeneratedValue
 	private int id;

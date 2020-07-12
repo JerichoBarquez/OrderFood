@@ -1,4 +1,4 @@
-package com.project.delivery.entity;
+package com.project.delivery.specification;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TakeOrderDto {
+public class OrderDetailSearchCriteria {
 	
 	private String status;
 

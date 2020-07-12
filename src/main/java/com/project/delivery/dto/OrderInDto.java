@@ -1,4 +1,4 @@
-package com.project.delivery.entity;
+package com.project.delivery.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderOutDto {
+public class OrderInDto {
 	
-	private int id;
-	private float distance;
-	private String status;
-	
+	private String [] origin;
+	private String [] destination;
+
 }
