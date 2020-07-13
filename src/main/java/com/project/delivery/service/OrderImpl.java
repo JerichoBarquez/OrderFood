@@ -29,6 +29,7 @@ public class OrderImpl implements OrderService {
 	private String apiKey;
 
 	private OrderDao orderDao;
+	
 	@Autowired
 	public OrderImpl(OrderDao orderDao) {
 		this.orderDao = orderDao;
@@ -40,12 +41,12 @@ public class OrderImpl implements OrderService {
 		try {
 			LatLng latOrigin = checkLatlng(orderInDto.getOrigin());
 			LatLng latDestination = checkLatlng(orderInDto.getDestination());
-			DistanceMatrixImpl distance = new DistanceMatrixImpl();
-			DistanceMatrix distanceMatrix = distance.getDistanceMatrix(latOrigin,
+			DistanceMatrixImpl distImpl = new DistanceMatrixImpl();
+			DistanceMatrix distanceMatrix = distImpl.getDistanceMatrix(latOrigin,
 					latDestination, apiKey);
 			DistanceMatrixElement[] dist = distanceMatrix.rows[0].elements;
 			if (dist[0].distance == null) {
-				throw new DeliveryGlobalException("No location found. Zero Result");
+				throw new DeliveryGlobalException("No location found. 0 Result");
 			}
 			orderDetailDto.setDestination(distanceMatrix.destinationAddresses[0]);
 			orderDetailDto.setOrigin(distanceMatrix.originAddresses[0]);
@@ -64,8 +65,9 @@ public class OrderImpl implements OrderService {
 				if (Double.valueOf(coordinates[0]) < -90 || Double.valueOf(coordinates[0]) > 90)
 				    throw new DeliveryGlobalException("Invalid Latitude " + coordinates[0]);
 				if (Double.valueOf(coordinates[1]) < -180 || Double.valueOf(coordinates[1]) > 180)
-					throw new DeliveryGlobalException("Invalid Longtitude " + coordinates[1]);
-			} else throw new DeliveryGlobalException("Longtitude or Latitude is missing.");
+					throw new DeliveryGlobalException("Invalid Longitude " + coordinates[1]);
+			} else 
+				throw new DeliveryGlobalException("Longitude or Latitude is missing.");
 		} catch (NumberFormatException e) {
 			throw new DeliveryGlobalException("Invalid input");
 		}
@@ -77,17 +79,19 @@ public class OrderImpl implements OrderService {
 	public String takeOrder(int id, String status) {
 		String stat = "";
 		Optional<OrderDetail> optDto = orderDao.findById(id);
-		if (optDto.isPresent() && optDto.get().getStatus().equalsIgnoreCase(Status.TAKEN.name())) 
-			throw new DeliveryGlobalException("The item was sold.");
-		else if (orderDao.saveByOrderId(id, status)  == 1)
+		if (!optDto.isPresent())
+			throw new DeliveryGlobalException("Item not available");
+		else if (optDto.get().getStatus().equalsIgnoreCase(Status.TAKEN.name()))
+			throw new DeliveryGlobalException("The item was taken/sold.");
+		if (orderDao.saveByOrderId(id, status)  == 1)
 			stat = Status.SUCCESSFUL.name();
 		return stat;
 	}
 
 	@Override
-	public Page<OrderOutDto> findAll(OrderDetailSearchCriteria criteria, int page, int size) {
+	public Page<OrderOutDto> findAll(OrderDetailSearchCriteria criteria, int page, int limit) {
 		Specification<OrderDetail> spec = OrderDetailSearchCriteriaSpecBuilder.from(criteria);
-		Page<OrderDetail> results = orderDao.findAll(spec, PageRequest.of(page, size));
+		Page<OrderDetail> results = orderDao.findAll(spec, PageRequest.of(page, limit));
 		return results.map(result -> OrderOutDto.convert(result));
 	}
 

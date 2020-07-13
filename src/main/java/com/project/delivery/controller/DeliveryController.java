@@ -53,7 +53,7 @@ public class DeliveryController {
 	@GetMapping(path = "orders")
 	@ApiOperation(value = "List of orders", response = OrderOutDto.class)
 	public ResponseEntity<List<OrderOutDto>> pages(@RequestParam("page") int page, @RequestParam("limit") int limit) {
-		if (page < 1) {
+		if (page < 1 || limit < 1) {
 			throw new DeliveryGlobalException("Invalid input. Should not be less than 1.");
 		}
 		final OrderDetailSearchCriteria criteria = OrderDetailSearchCriteria.builder().build();

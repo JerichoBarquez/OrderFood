@@ -27,12 +27,10 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
     compile group: 'com.google.maps', name: 'google-maps-services', version: '0.14.0'
-   // compile group: 'org.springframework.data', name: 'spring-data-rest-webmvc', version: '3.3.1.RELEASE'
-   // compile group: 'org.springframework.data', name: 'spring-data-rest-core', version: '3.3.1.RELEASE'
-    //compile group: 'org.springframework.plugin', name: 'spring-plugin-core', version: '2.0.0.RELEASE'
     runtimeOnly group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+		testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '1.5.1'
+		testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.2'
 	}
 }
 
