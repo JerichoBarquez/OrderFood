@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.1.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
+	id 'com.palantir.docker' version '0.25.0'
 }
 
 group = 'com.project.delivery'
@@ -27,12 +28,15 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
     compile group: 'com.google.maps', name: 'google-maps-services', version: '0.14.0'
+    runtime("com.h2database:h2:1.3.176")
     runtimeOnly group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '1.5.1'
 		testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.2'
 	}
 }
+
+
 
 test {
 	useJUnitPlatform()

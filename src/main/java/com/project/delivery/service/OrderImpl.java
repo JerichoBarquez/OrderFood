@@ -42,8 +42,7 @@ public class OrderImpl implements OrderService {
 			LatLng latOrigin = checkLatlng(orderInDto.getOrigin());
 			LatLng latDestination = checkLatlng(orderInDto.getDestination());
 			DistanceMatrixImpl distImpl = new DistanceMatrixImpl();
-			DistanceMatrix distanceMatrix = distImpl.getDistanceMatrix(latOrigin,
-					latDestination, apiKey);
+			DistanceMatrix distanceMatrix = distImpl.getDistanceMatrix(latOrigin, latDestination, apiKey);
 			DistanceMatrixElement[] dist = distanceMatrix.rows[0].elements;
 			if (dist[0].distance == null) {
 				throw new DeliveryGlobalException("No location found. 0 Result");

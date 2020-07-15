@@ -1,0 +1,5 @@
+INSERT INTO ORDER_DETAIL (`id`,`destination`,`distance`,`origin`,`status`) VALUES (24,'317 Antipolo, Mandaluyong, 1550 Kalakhang Maynila, Philippines',151,'664 Calbayog St, Mandaluyong, 1550 Metro Manila, Philippines','UNASSIGNED');
+INSERT INTO ORDER_DETAIL (`id`,`destination`,`distance`,`origin`,`status`) VALUES (25,'317 Antipolo, Mandaluyong, 1550 Kalakhang Maynila, Philippines',151,'664 Calbayog St, Mandaluyong, 1550 Metro Manila, Philippines','TAKEN');
+INSERT INTO ORDER_DETAIL (`id`,`destination`,`distance`,`origin`,`status`) VALUES (26,'317 Antipolo, Mandaluyong, 1550 Kalakhang Maynila, Philippines',151,'664 Calbayog St, Mandaluyong, 1550 Metro Manila, Philippines','UNASSIGNED');
+INSERT INTO ORDER_DETAIL (`id`,`destination`,`distance`,`origin`,`status`) VALUES (27,'317 Antipolo, Mandaluyong, 1550 Kalakhang Maynila, Philippines',151,'664 Calbayog St, Mandaluyong, 1550 Metro Manila, Philippines','UNASSIGNED');
+INSERT INTO ORDER_DETAIL (`id`,`destination`,`distance`,`origin`,`status`) VALUES (28,'317 Antipolo, Mandaluyong, 1550 Kalakhang Maynila, Philippines',151,'664 Calbayog St, Mandaluyong, 1550 Metro Manila, Philippines','UNASSIGNED');

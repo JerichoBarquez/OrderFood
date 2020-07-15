@@ -36,7 +36,7 @@ class DeliveryApplicationTests {
 	 *     Exception expected with "Invalid input" error message
 	 */
 	@Test
-	public void whenNoInputCreateOrder() {
+	public void test_whenNoInputCreateOrder() {
 		try {
 			OrderInDto order = new OrderInDto();
 			String destination [] = {"",""};
@@ -59,7 +59,7 @@ class DeliveryApplicationTests {
 	 *     Exception expected with "No location found. 0 Result" error message
 	 */
 	@Test
-	public void whenNoLocationFoundCreateOrder() {
+	public void test_whenNoLocationFoundCreateOrder() {
 		try {
 			OrderInDto order = new OrderInDto();
 			String destination [] = {"14.576713","121.046201"};
@@ -82,7 +82,7 @@ class DeliveryApplicationTests {
 	 *     Exception expected with "Invalid input" error message
 	 */
 	@Test
-	public void whenNotNumberCreateOrder() {
+	public void test_whenNotNumberCreateOrder() {
 		try {
 			OrderInDto order = new OrderInDto();
 			String destination [] = {"AAA","BBB"};
@@ -105,7 +105,7 @@ class DeliveryApplicationTests {
 	 *     Exception expected with "Longitude or Latitude is missing" error message
 	 */
 	@Test
-	public void whenLackOfInputCreateOrder() {
+	public void test_whenLackOfInputCreateOrder() {
 		try {
 			OrderInDto order = new OrderInDto();
 			String destination [] = {"14.576713","121.04751"};
@@ -128,7 +128,7 @@ class DeliveryApplicationTests {
 	 *     Exception expected with "Invalid Longitude -200.04751" error message
 	 */
 	@Test
-	public void whenInvalidLongitudeCreateOrder() {
+	public void test_whenInvalidLongitudeCreateOrder() {
 		try {
 			OrderInDto order = new OrderInDto();
 			String destination [] = {"14.576713","121.04751"};
@@ -151,7 +151,7 @@ class DeliveryApplicationTests {
 	 *     Exception expected with "Invalid Latitude 100.576713" error message
 	 */
 	@Test
-	public void whenInvalidLatitudeCreateOrder() {
+	public void test_whenInvalidLatitudeCreateOrder() {
 		try {
 			OrderInDto order = new OrderInDto();
 			String destination [] = {"100.576713","121.04751"};
@@ -174,7 +174,7 @@ class DeliveryApplicationTests {
 	 *     
 	 */
 	@Test
-	public void whenSuccessfulCreateOrder() {
+	public void test_whenSuccessfulCreateOrder() {
 		try {
 			OrderInDto order = new OrderInDto();
 			String destination [] = {"14.576713","121.04751"};
@@ -200,7 +200,7 @@ class DeliveryApplicationTests {
 	 *     Exception expected with "Item not available" error message
 	 */
 	@Test
-	public void whenTakesAnOrderNotExisting() {
+	public void test_whenTakesAnOrderNotExisting() {
 		try {
 			int id = 100;
 			TakeOrderDto takeOrderDto = new TakeOrderDto();
@@ -222,9 +222,9 @@ class DeliveryApplicationTests {
 	 *     
 	 */
 	@Test
-	public void whenTakesAnOrderUnassigned() {
+	public void test_whenTakesAnOrderUnassigned() {
 		try {
-			int id = 30;
+			int id = 26;
 			TakeOrderDto takeOrderDto = new TakeOrderDto();
 			takeOrderDto.setStatus("TAKEN");
 			ResponseEntity<TakeOrderDto> takeOrder = controller.order(id, takeOrderDto);
@@ -244,12 +244,13 @@ class DeliveryApplicationTests {
 	 *     Exception expected with "The item was taken/sold." error message
 	 */
 	@Test
-	public void whenTakesAnOrderTaken() {
+	public void test_whenTakesAnOrderTaken() {
 		try {
 			int id = 30;
 			TakeOrderDto takeOrderDto = new TakeOrderDto();
 			takeOrderDto.setStatus("TAKEN");
 			controller.order(id, takeOrderDto);
+			assertTrue(false);
 		} catch (DeliveryGlobalException e) {
 			assertEquals("The item was taken/sold.", e.getMessage());
 			assertTrue(true);
@@ -265,7 +266,7 @@ class DeliveryApplicationTests {
 	 *     Exception expected with "Invalid input. Should not be less than 1." error message
 	 */
 	@Test
-	public void whenListOrderPageZero() {
+	public void test_whenListOrderPageZero() {
 		try {
 			int page = 0;
 			int limit = 2;
@@ -284,7 +285,7 @@ class DeliveryApplicationTests {
 	 *     Exception expected with "Invalid input. Should not be less than 1." error message
 	 */
 	@Test
-	public void whenListOrderLimitZero() {
+	public void test_whenListOrderLimitZero() {
 		try {
 			int page = 1;
 			int limit = 0;
@@ -304,7 +305,7 @@ class DeliveryApplicationTests {
 	 *     
 	 */
 	@Test
-	public void whenListOrderSucessful() {
+	public void test_whenListOrderSucessful() {
 		try {
 			int page = 1;
 			int limit = 3;
@@ -325,7 +326,7 @@ class DeliveryApplicationTests {
 	 *     
 	 */
 	@Test
-	public void whenListOrderNotExisting() {
+	public void test_whenListOrderNotExisting() {
 		try {
 			int page = 9;
 			int limit = 10;
